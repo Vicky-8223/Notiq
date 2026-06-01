@@ -1,0 +1,11 @@
+.idea/
+*.iml
+
+.gradle
+**/build/
+
+.env
+
+*.log
+
+Thumbs.db
