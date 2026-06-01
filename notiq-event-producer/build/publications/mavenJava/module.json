@@ -1,0 +1,76 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.notiq",
+    "module": "notiq-event-producer",
+    "version": "1.0-SNAPSHOT",
+    "attributes": {
+      "org.gradle.status": "integration"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.14"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 21,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "notiq-event-producer-1.0-SNAPSHOT.jar",
+          "url": "notiq-event-producer-1.0-SNAPSHOT.jar",
+          "size": 7993,
+          "sha512": "74e709107439fd3f9d3a3fc05014690b1f0f3b3105b3f9faca3e54af8637b1dd720666cff099be6f213ab328d0441b8469ed9727ea78ea4db19ca3bc3fbe8f3f",
+          "sha256": "5ad6f5a097e731c3267ae37f2e2be9be0fe92a72107115b46bb97fbe51f3d22b",
+          "sha1": "7ecabce431ec10010a95d6eb46a5ee72781123fe",
+          "md5": "1c0c4a438008b509bc3e55b28b44b5a7"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 21,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "org.springframework.kafka",
+          "module": "spring-kafka",
+          "version": {
+            "requires": "3.3.5"
+          }
+        },
+        {
+          "group": "com.fasterxml.jackson.core",
+          "module": "jackson-databind",
+          "version": {
+            "requires": "2.18.2"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "notiq-event-producer-1.0-SNAPSHOT.jar",
+          "url": "notiq-event-producer-1.0-SNAPSHOT.jar",
+          "size": 7993,
+          "sha512": "74e709107439fd3f9d3a3fc05014690b1f0f3b3105b3f9faca3e54af8637b1dd720666cff099be6f213ab328d0441b8469ed9727ea78ea4db19ca3bc3fbe8f3f",
+          "sha256": "5ad6f5a097e731c3267ae37f2e2be9be0fe92a72107115b46bb97fbe51f3d22b",
+          "sha1": "7ecabce431ec10010a95d6eb46a5ee72781123fe",
+          "md5": "1c0c4a438008b509bc3e55b28b44b5a7"
+        }
+      ]
+    }
+  ]
+}

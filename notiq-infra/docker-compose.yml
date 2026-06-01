@@ -1,0 +1,71 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: notiq-postgres
+
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "${POSTGRES_PORT}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - notiq-network
+  
+  redis:
+    image: redis:7
+    container_name: notiq-redis
+    restart: unless-stopped
+    ports:
+      - "${REDIS_PORT}:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - notiq-network
+  
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.6.1
+    container_name: notiq-zookeeper
+    restart: unless-stopped
+    
+    environment:
+      ZOOKEEPER_CLIENT_PORT: ${ZOOKEEPER_PORT}
+    ports:
+      - "${ZOOKEEPER_PORT}:2181"
+    networks:
+      - notiq-network
+    
+  kafka:
+    image: confluentinc/cp-kafka:7.6.1
+    container_name: notiq-kafka
+    restart: unless-stopped
+    depends_on:
+      - zookeeper
+    ports:
+      - "${KAFKA_PORT}:9092"
+    environment:
+      KAFKA_BROKER_ID: ${KAFKA_BROKER_ID}
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:${KAFKA_PORT}
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "false"
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    
+    volumes:
+      - kafka_data:/var/lib/kafka/data
+    networks:
+      - notiq-network
+
+volumes:
+  postgres_data:
+  redis_data:
+  kafka_data:
+
+networks:
+  notiq-network:
+    driver: bridge
