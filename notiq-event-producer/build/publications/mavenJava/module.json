@@ -27,11 +27,11 @@
         {
           "name": "notiq-event-producer-1.0-SNAPSHOT.jar",
           "url": "notiq-event-producer-1.0-SNAPSHOT.jar",
-          "size": 7993,
-          "sha512": "74e709107439fd3f9d3a3fc05014690b1f0f3b3105b3f9faca3e54af8637b1dd720666cff099be6f213ab328d0441b8469ed9727ea78ea4db19ca3bc3fbe8f3f",
-          "sha256": "5ad6f5a097e731c3267ae37f2e2be9be0fe92a72107115b46bb97fbe51f3d22b",
-          "sha1": "7ecabce431ec10010a95d6eb46a5ee72781123fe",
-          "md5": "1c0c4a438008b509bc3e55b28b44b5a7"
+          "size": 8036,
+          "sha512": "58c2fa083fe30b4b4efd96ee8bfeeff2e39bfc007cfb5205947fe5bb1eddca34636fc487f44d190d7f170b29f3f95b3488f08602552101e776f968bb051b2fa4",
+          "sha256": "c0d76d5e6894a8d8f9c86a7d6c264192f4dc527e4d6497f90f9e1f6189b13191",
+          "sha1": "f90a223779cbf0f6de9dcd0dc48e4991b5676ce8",
+          "md5": "2483f7e0730f7d18fcec67eddb5e6344"
         }
       ]
     },
@@ -64,11 +64,11 @@
         {
           "name": "notiq-event-producer-1.0-SNAPSHOT.jar",
           "url": "notiq-event-producer-1.0-SNAPSHOT.jar",
-          "size": 7993,
-          "sha512": "74e709107439fd3f9d3a3fc05014690b1f0f3b3105b3f9faca3e54af8637b1dd720666cff099be6f213ab328d0441b8469ed9727ea78ea4db19ca3bc3fbe8f3f",
-          "sha256": "5ad6f5a097e731c3267ae37f2e2be9be0fe92a72107115b46bb97fbe51f3d22b",
-          "sha1": "7ecabce431ec10010a95d6eb46a5ee72781123fe",
-          "md5": "1c0c4a438008b509bc3e55b28b44b5a7"
+          "size": 8036,
+          "sha512": "58c2fa083fe30b4b4efd96ee8bfeeff2e39bfc007cfb5205947fe5bb1eddca34636fc487f44d190d7f170b29f3f95b3488f08602552101e776f968bb051b2fa4",
+          "sha256": "c0d76d5e6894a8d8f9c86a7d6c264192f4dc527e4d6497f90f9e1f6189b13191",
+          "sha1": "f90a223779cbf0f6de9dcd0dc48e4991b5676ce8",
+          "md5": "2483f7e0730f7d18fcec67eddb5e6344"
         }
       ]
     }
