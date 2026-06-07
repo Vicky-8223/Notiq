@@ -17,7 +17,11 @@ public class KafkaTopics {
             "email-notifications";
     public static final String SMS_NOTIFICATION =
             "sms-notifications";
-
     public static final String PUSH_NOTIFICATION =
             "push-notifications";
+    public static final String NOTIFICATION_DELIVERED=
+            "notification-delivered";
+    public static final String NOTIFICATION_FAILED=
+            "notification-failed";
+    public static final String NOTIFICATION_DISPATCHED="notification-dispatched";
 }

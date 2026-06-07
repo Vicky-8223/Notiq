@@ -1,0 +1,5 @@
+rootProject.name="notiq"
+include("core")
+include("dispatcher")
+include("notiq-event-producer")
+include("email-service")

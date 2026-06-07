@@ -22,7 +22,7 @@ public class TestController {
     public String publish(){
         NotificationEvent event=NotificationEvent.builder()
                 .eventId(UUID.randomUUID().toString())
-                .recipient("vicky@gmail.com")
+                .recipient("velvignesh2405@gmail.com")
                 .channel(NotificationChannel.EMAIL)
                 .priority(NotificationPriority.HIGH)
                 .eventType(NotificationEventType.USER_REGISTERED)

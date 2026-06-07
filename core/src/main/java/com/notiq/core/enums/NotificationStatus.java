@@ -1,10 +1,10 @@
 package com.notiq.core.enums;
 
 public enum NotificationStatus {
-    RECEIVED,
-    PROCESSING,
-    DISPATCHED,
-    DELIVERED,
-    FAILED,
-    DLQ
+    RECEIVED,//stored by Core
+    PROCESSING,//Retry Underway
+    DISPATCHED,//Routed by Dispatcher
+    DELIVERED,//Successfully sent
+    FAILED,//Last attempt failed
+    DLQ    //Exhausted retires
 }
