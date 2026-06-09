@@ -20,7 +20,7 @@ public class NotificationConsumer {
             topics= KafkaTopics.NOTIFICATION_REQUEST,
             groupId = "notification-core-group"
     )
-    public void consume(NotificationEvent event){
+    public void consume(NotificationEvent event)throws Exception{
         log.info(
                 "eventId={} correlationId={} status={}",
                 event.getEventId(),
@@ -28,8 +28,10 @@ public class NotificationConsumer {
                 NotificationStatus.RECEIVED
         );
         validate(event);
-        notificationService.createNotificationEvent(event);
-        log.info("Notification persisted successfully {}",event.getEventId());
+        boolean created=notificationService.createNotificationEvent(event);
+        if(created) {
+            log.info("Notification persisted successfully {}", event.getEventId());
+        }
     }
     private void validate(NotificationEvent event){
 

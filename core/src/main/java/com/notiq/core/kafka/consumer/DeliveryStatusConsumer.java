@@ -39,7 +39,7 @@ public class DeliveryStatusConsumer {
                topics=KafkaTopics.NOTIFICATION_FAILED,
                groupId="failed-marker"
        )
-       public void consumeFailed(DeliveryStatusEvent event){
+       public void consumeFailed(DeliveryStatusEvent event)throws Exception{
            log.info(
                    "Received FAILED eventId={}",
                    event.getEventId()

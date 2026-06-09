@@ -47,6 +47,9 @@ public class Notification {
     private LocalDateTime createdAt;
     @LastModifiedDate
     private LocalDateTime updatedAt;
+    private String eventType;
+    @Column(columnDefinition = "TEXT")
+    private String payload;
 
-
+    private Integer schemaVersion;
 }

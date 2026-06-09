@@ -8,13 +8,12 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 @Slf4j
-public class NotificationProducer {
-    private final KafkaTemplate<String, Object> kafkaTemplate;
+@RequiredArgsConstructor
+public class DlqProducer {
+    private final KafkaTemplate<String,Object> kafkaTemplate;
     public void publish(NotificationEvent notificationEvent){
-        kafkaTemplate.send(KafkaTopics.NOTIFICATION_REQUEST,notificationEvent);
-        log.info("Published notification event {}",notificationEvent.getEventId());
-
+        kafkaTemplate.send(KafkaTopics.NOTIFICATION_DLQ,notificationEvent);
+        log.info("Event {} Added to the Dead Letter Queue",notificationEvent.getEventId());
     }
 }

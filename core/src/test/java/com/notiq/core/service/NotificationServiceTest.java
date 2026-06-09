@@ -26,7 +26,7 @@ class NotificationServiceTest {
     private NotificationService notificationService;
 
     @Test
-    void shouldSaveNotificationForValidEvent() {
+    void shouldSaveNotificationForValidEvent() throws Exception {
 
         NotificationEvent event = NotificationEvent.builder()
                 .eventId("event-1")
@@ -47,7 +47,7 @@ class NotificationServiceTest {
     }
 
     @Test
-    void shouldIgnoreDuplicateEvent() {
+    void shouldIgnoreDuplicateEvent() throws Exception {
 
         NotificationEvent event = NotificationEvent.builder()
                 .eventId("event-1")
@@ -65,7 +65,7 @@ class NotificationServiceTest {
     }
 
     @Test
-    void shouldMapEventToNotificationCorrectly() {
+    void shouldMapEventToNotificationCorrectly() throws Exception {
 
         NotificationEvent event = NotificationEvent.builder()
                 .eventId("event-1")
