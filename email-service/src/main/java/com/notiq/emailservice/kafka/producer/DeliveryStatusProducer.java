@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @RequiredArgsConstructor
 public class DeliveryStatusProducer {
-    private final KafkaTemplate<String,DeliveryStatusEvent> kafkaTemplate;
+    private final KafkaTemplate<String,Object> kafkaTemplate;
     public void publishDelivered(DeliveryStatusEvent event){
         kafkaTemplate.send(KafkaTopics.NOTIFICATION_DELIVERED,event);
         log.info("Published DELIVERED eventId={}",event.getEventId());
@@ -19,5 +19,9 @@ public class DeliveryStatusProducer {
     public void publishFailed(DeliveryStatusEvent event){
         kafkaTemplate.send(KafkaTopics.NOTIFICATION_FAILED,event);
         log.info("Published FAILED eventId={}",event.getEventId());
+    }
+    public void publishProcessing(DeliveryStatusEvent event){
+        kafkaTemplate.send(KafkaTopics.NOTIFICATION_PROCESSING,event);
+        log.info("Published PROCESSING eventId={}",event.getEventId());
     }
 }

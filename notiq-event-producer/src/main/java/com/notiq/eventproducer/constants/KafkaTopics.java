@@ -24,4 +24,6 @@ public class KafkaTopics {
     public static final String NOTIFICATION_FAILED=
             "notification-failed";
     public static final String NOTIFICATION_DISPATCHED="notification-dispatched";
+    public static final String NOTIFICATION_PROCESSING="notification-processing";
+
 }

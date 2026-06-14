@@ -24,5 +24,4 @@ public class NotificationEvent {
     private LocalDateTime createdAt;
     private String correlationId;
     private String sourceService;
-    private Integer schemaVersion;
 }

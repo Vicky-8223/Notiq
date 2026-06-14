@@ -16,8 +16,8 @@ import java.util.Map;
 @Configuration
 public class KafkaConsumerConfig {
     @Bean
-    public ConsumerFactory<String, NotificationEvent>consumerFactory(){
-        JsonDeserializer<NotificationEvent> deserializer=new JsonDeserializer<>(NotificationEvent.class);
+    public ConsumerFactory<String, Object>consumerFactory(){
+        JsonDeserializer<Object> deserializer=new JsonDeserializer<>(Object.class);
         deserializer.addTrustedPackages("*");
         Map<String,Object> props=new HashMap<>();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG,"localhost:9092");
@@ -27,8 +27,8 @@ public class KafkaConsumerConfig {
         return new DefaultKafkaConsumerFactory<>(props,new StringDeserializer(),deserializer);
     }
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String,NotificationEvent>kafkaListenerContainerFactory(){
-        ConcurrentKafkaListenerContainerFactory<String,NotificationEvent>factory=new ConcurrentKafkaListenerContainerFactory<>();
+    public ConcurrentKafkaListenerContainerFactory<String,Object>kafkaListenerContainerFactory(){
+        ConcurrentKafkaListenerContainerFactory<String,Object>factory=new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory());
         return factory;
     }

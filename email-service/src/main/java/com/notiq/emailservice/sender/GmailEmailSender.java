@@ -18,6 +18,15 @@ public class GmailEmailSender implements EmailSender {
 
     @Override
     public void send(NotificationEvent event,String subject,String body){
+        DeliveryStatusEvent statusEvent=DeliveryStatusEvent.
+                builder()
+                .eventId(event.getEventId())
+                .correlationId(event.getCorrelationId())
+                .recipient(event.getRecipient())
+                .channel(event.getChannel())
+                .success(true)
+                .build();
+        deliveryStatusProducer.publishProcessing(statusEvent);
         try{
             SimpleMailMessage message=new SimpleMailMessage();
             message.setFrom("notiq26@gmail.com");
@@ -25,19 +34,11 @@ public class GmailEmailSender implements EmailSender {
             message.setSubject(subject);
             message.setText(body);
             javaMailSender.send(message);
-            DeliveryStatusEvent statusEvent=DeliveryStatusEvent.
-                    builder()
-                            .eventId(event.getEventId())
-                            .correlationId(event.getCorrelationId())
-                            .recipient(event.getRecipient())
-                            .channel(event.getChannel())
-                            .success(true)
-                            .build();
             deliveryStatusProducer.publishDelivered(statusEvent);
             log.info("Email sent successfully to {}",event.getRecipient());
         }
         catch(Exception e){
-            DeliveryStatusEvent statusEvent=DeliveryStatusEvent.
+            DeliveryStatusEvent statusEvent2=DeliveryStatusEvent.
                     builder()
                     .eventId(event.getEventId())
                     .correlationId(event.getCorrelationId())
@@ -46,7 +47,7 @@ public class GmailEmailSender implements EmailSender {
                     .success(false)
                     .failureReason(e.getMessage())
                     .build();
-            deliveryStatusProducer.publishFailed(statusEvent);
+            deliveryStatusProducer.publishFailed(statusEvent2);
             log.error("Failed to send email to {}",event.getRecipient(),e);
         }
     }

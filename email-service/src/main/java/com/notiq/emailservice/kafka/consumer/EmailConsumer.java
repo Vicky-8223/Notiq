@@ -19,6 +19,7 @@ public class EmailConsumer {
     )
     public void consume(NotificationEvent event){
         log.info("Received email notification eventId={}",event.getEventId());
+
         emailService.process(event);
     }
 }

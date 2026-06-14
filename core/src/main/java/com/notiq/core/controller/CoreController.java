@@ -18,26 +18,9 @@ import java.util.UUID;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/test")
-@CrossOrigin(origins = "http://localhost:5173")
-public class TestController {
+public class CoreController {
     private final NotificationProducer producer;
     private final NotificationService notificationService;
-    @PostMapping("/publish")
-    public String publish(){
-        NotificationEvent event=NotificationEvent.builder()
-                .eventId(UUID.randomUUID().toString())
-                .recipient("velvignesh2405@gmail.com")
-                .channel(NotificationChannel.EMAIL)
-                .priority(NotificationPriority.HIGH)
-                .eventType(NotificationEventType.USER_REGISTERED)
-                .correlationId(UUID.randomUUID().toString())
-                .sourceService("test-service")
-                .schemaVersion(1)
-                .createdAt(LocalDateTime.now())
-                .build();
-        producer.publish(event);
-        return "Published";
-    }
     @GetMapping("/{eventId}")
     public ResponseEntity<NotificationResponse> getNotification(@PathVariable String eventId){
         return ResponseEntity.ok(notificationService.map(notificationService.getByEventId(eventId)));
@@ -46,5 +29,14 @@ public class TestController {
     public ResponseEntity<List<NotificationResponse>>getAllNotifications(){
         return ResponseEntity.ok(notificationService.getAllNotifications()
                 .stream().map(notificationService::map).toList());
+    }
+    @PostMapping("/notify")
+    public String notify(@RequestBody NotificationEvent event){
+        event.setEventId(UUID.randomUUID().toString());
+        event.setCorrelationId(UUID.randomUUID().toString());
+        event.setCreatedAt(LocalDateTime.now());
+        event.setSourceService("play-ground");
+        producer.publish(event);
+        return event.getEventId();
     }
 }

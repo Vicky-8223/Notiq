@@ -3,25 +3,25 @@
   <groupId>com.notiq</groupId>
   <artifactId>notiq-event-producer</artifactId>
   <versioning>
-    <lastUpdated>20260606175956</lastUpdated>
+    <lastUpdated>20260611163433</lastUpdated>
     <snapshot>
       <localCopy>true</localCopy>
     </snapshot>
     <snapshotVersions>
       <snapshotVersion>
+        <extension>jar</extension>
+        <value>1.0-SNAPSHOT</value>
+        <updated>20260611163433</updated>
+      </snapshotVersion>
+      <snapshotVersion>
         <extension>pom</extension>
         <value>1.0-SNAPSHOT</value>
-        <updated>20260606175956</updated>
+        <updated>20260611163433</updated>
       </snapshotVersion>
       <snapshotVersion>
         <extension>module</extension>
         <value>1.0-SNAPSHOT</value>
-        <updated>20260606175956</updated>
-      </snapshotVersion>
-      <snapshotVersion>
-        <extension>jar</extension>
-        <value>1.0-SNAPSHOT</value>
-        <updated>20260606175956</updated>
+        <updated>20260611163433</updated>
       </snapshotVersion>
     </snapshotVersions>
   </versioning>

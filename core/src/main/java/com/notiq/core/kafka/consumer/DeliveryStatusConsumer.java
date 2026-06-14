@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
+import java.util.Locale;
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -48,5 +50,15 @@ public class DeliveryStatusConsumer {
            notificationService.processFailure(event.getEventId());
 
        }
-
+       @KafkaListener(
+               topics=KafkaTopics.NOTIFICATION_PROCESSING,
+               groupId="processing-marker"
+       )
+       public void consumeProcessing(DeliveryStatusEvent event){
+          log.info(
+                  "Received PROCESSING eventId={}",
+                  event.getEventId()
+          );
+          notificationService.markProcessing(event.getEventId());
+       }
 }
