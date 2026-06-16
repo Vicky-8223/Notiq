@@ -4,6 +4,7 @@ import com.notiq.eventproducer.constants.KafkaTopics;
 import com.notiq.eventproducer.dto.NotificationEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,8 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @RequiredArgsConstructor
 public class RetryProducer {
-    private final KafkaTemplate<String,Object> kafkaTemplate;
+
+    private final KafkaTemplate<String,NotificationEvent> kafkaTemplate;
     public void republish(NotificationEvent event){
         kafkaTemplate.send(KafkaTopics.NOTIFICATION_RETRY,event);
         log.info("Published RETRY eventId={}",event.getEventId());

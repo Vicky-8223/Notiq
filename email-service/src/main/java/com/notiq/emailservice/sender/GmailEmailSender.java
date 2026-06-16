@@ -26,13 +26,13 @@ public class GmailEmailSender implements EmailSender {
                 .channel(event.getChannel())
                 .success(true)
                 .build();
-        deliveryStatusProducer.publishProcessing(statusEvent);
         try{
             SimpleMailMessage message=new SimpleMailMessage();
             message.setFrom("notiq26@gmail.com");
             message.setTo(event.getRecipient());
             message.setSubject(subject);
             message.setText(body);
+            deliveryStatusProducer.publishProcessing(statusEvent);
             javaMailSender.send(message);
             deliveryStatusProducer.publishDelivered(statusEvent);
             log.info("Email sent successfully to {}",event.getRecipient());

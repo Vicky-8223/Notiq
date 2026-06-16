@@ -20,7 +20,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.notiq:notiq-event-producer:1.0-SNAPSHOT'
+    implementation project(':notiq-event-producer')
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-mail'
     implementation 'org.springframework.boot:spring-boot-starter-web'

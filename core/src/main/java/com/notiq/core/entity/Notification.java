@@ -2,6 +2,7 @@ package com.notiq.core.entity;
 
 import com.notiq.core.enums.NotificationStatus;
 import com.notiq.eventproducer.enums.NotificationChannel;
+
 import com.notiq.eventproducer.enums.NotificationPriority;
 import jakarta.persistence.*;
 import lombok.*;
