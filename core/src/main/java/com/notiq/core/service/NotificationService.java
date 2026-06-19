@@ -30,7 +30,8 @@
         private final ObjectMapper objectMapper;
         private final RetryProducer retryProducer;
         private final DlqProducer dlqProducer;
-        private final NotificationWebSocketPublisher publisher;
+//        private final NotificationWebSocketPublisher publisher;
+        private final NotificationSsePublisher publisher;
         public boolean createNotificationEvent(NotificationEvent event) throws Exception{
             if(notificationRepository.existsByEventId(event.getEventId())){
                 log.warn("Duplicate Event received: "+event.getEventId());
