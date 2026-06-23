@@ -24,6 +24,7 @@ public class GmailEmailSender implements EmailSender {
                 .correlationId(event.getCorrelationId())
                 .recipient(event.getRecipient())
                 .channel(event.getChannel())
+                .status(com.notiq.eventproducer.enums.NotificationStatus.PROCESSING)
                 .success(true)
                 .build();
         try{
@@ -34,6 +35,7 @@ public class GmailEmailSender implements EmailSender {
             message.setText(body);
             deliveryStatusProducer.publishProcessing(statusEvent);
             javaMailSender.send(message);
+            statusEvent.setStatus(com.notiq.eventproducer.enums.NotificationStatus.DELIVERED);
             deliveryStatusProducer.publishDelivered(statusEvent);
             log.info("Email sent successfully to {}",event.getRecipient());
         }
@@ -44,6 +46,7 @@ public class GmailEmailSender implements EmailSender {
                     .correlationId(event.getCorrelationId())
                     .recipient(event.getRecipient())
                     .channel(event.getChannel())
+                    .status(com.notiq.eventproducer.enums.NotificationStatus.FAILED)
                     .success(false)
                     .failureReason(e.getMessage())
                     .build();

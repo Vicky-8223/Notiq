@@ -16,15 +16,15 @@ public class DeliveryStatusProducer {
 
     private final KafkaTemplate<String,Object> kafkaTemplate;
     public void publishDelivered(DeliveryStatusEvent event){
-        kafkaTemplate.send(KafkaTopics.NOTIFICATION_DELIVERED,event);
+        kafkaTemplate.send(KafkaTopics.NOTIFICATION_STATUS,event);
         log.info("Published DELIVERED eventId={}",event.getEventId());
     }
     public void publishFailed(DeliveryStatusEvent event){
-        kafkaTemplate.send(KafkaTopics.NOTIFICATION_FAILED,event);
+        kafkaTemplate.send(KafkaTopics.NOTIFICATION_STATUS,event);
         log.info("Published FAILED eventId={}",event.getEventId());
     }
     public void publishProcessing(DeliveryStatusEvent event){
-        kafkaTemplate.send(KafkaTopics.NOTIFICATION_PROCESSING,event);
+        kafkaTemplate.send(KafkaTopics.NOTIFICATION_STATUS,event);
         log.info("Published PROCESSING eventId={}",event.getEventId());
     }
 }

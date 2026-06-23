@@ -9,3 +9,5 @@
 *.log
 
 Thumbs.db
+
+kafka-truststore.jks

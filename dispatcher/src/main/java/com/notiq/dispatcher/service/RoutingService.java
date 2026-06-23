@@ -21,11 +21,11 @@ public class RoutingService {
                 log.info("Routed eventId={} to EMAIL Topic",event.getEventId());
             }
             case SMS -> {
-                producer.publish(KafkaTopics.SMS_NOTIFICATION,event);
+//                producer.publish(KafkaTopics.SMS_NOTIFICATION,event);
                 log.info("Routed eventId={} to SMS Topic",event.getEventId());
             }
             case PUSH -> {
-                producer.publish(KafkaTopics.PUSH_NOTIFICATION, event);
+//                producer.publish(KafkaTopics.PUSH_NOTIFICATION, event);
                 log.info("Routed eventId={} to PUSH_Topic", event.getEventId());
             }
         }
@@ -34,6 +34,7 @@ public class RoutingService {
                 .correlationId(event.getCorrelationId())
                 .recipient(event.getRecipient())
                 .channel(event.getChannel())
+                .status(com.notiq.eventproducer.enums.NotificationStatus.DISPATCHED)
                 .success(true)
                 .build();
         producer.publishDispatched(dispatchedEvent);

@@ -17,48 +17,32 @@ import java.util.Locale;
 public class DeliveryStatusConsumer {
        private final NotificationService notificationService;
       @KafkaListener(
-            topics=KafkaTopics.NOTIFICATION_DISPATCHED,
-            groupId="dispatched-marker"
+            topics=KafkaTopics.NOTIFICATION_STATUS,
+            groupId="core-status-group"
       )
-      public void consumeDispatched(DeliveryStatusEvent event){
-        log.info(
-                "Received DISPATCHED eventId={}",event.getEventId()
-        );
-        notificationService.markDispatched(event.getEventId());
+      public void consumeStatus(DeliveryStatusEvent event) throws Exception {
+          log.info("Received STATUS eventId={}, status={}", event.getEventId(), event.getStatus());
+          if (event.getStatus() == null) {
+              log.error("Received STATUS event with null status! eventId={}", event.getEventId());
+              return;
+          }
+          
+          switch (event.getStatus()) {
+              case DISPATCHED:
+                  notificationService.markDispatched(event.getEventId());
+                  break;
+              case PROCESSING:
+                  notificationService.markProcessing(event.getEventId());
+                  break;
+              case DELIVERED:
+                  notificationService.markDelivered(event.getEventId());
+                  break;
+              case FAILED:
+                  notificationService.markFailed(event.getEventId());
+                  notificationService.processFailure(event.getEventId());
+                  break;
+              default:
+                  log.warn("Unknown status received: {}", event.getStatus());
+          }
       }
-       @KafkaListener(
-               topics= KafkaTopics.NOTIFICATION_DELIVERED,
-               groupId="delivered-marker"
-       )
-       public void consumeDelivered(DeliveryStatusEvent event){
-           log.info(
-                   "Received DELIVERED eventId={}",
-                   event.getEventId()
-           );
-           notificationService.markDelivered(event.getEventId());
-       }
-       @KafkaListener(
-               topics=KafkaTopics.NOTIFICATION_FAILED,
-               groupId="failed-marker"
-       )
-       public void consumeFailed(DeliveryStatusEvent event)throws Exception{
-           log.info(
-                   "Received FAILED eventId={}",
-                   event.getEventId()
-           );
-           notificationService.markFailed(event.getEventId());
-           notificationService.processFailure(event.getEventId());
-
-       }
-       @KafkaListener(
-               topics=KafkaTopics.NOTIFICATION_PROCESSING,
-               groupId="processing-marker"
-       )
-       public void consumeProcessing(DeliveryStatusEvent event){
-          log.info(
-                  "Received PROCESSING eventId={}",
-                  event.getEventId()
-          );
-          notificationService.markProcessing(event.getEventId());
-       }
 }

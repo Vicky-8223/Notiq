@@ -14,11 +14,7 @@ public class KafkaTopics {
             "notification-dlq";
     public static final String EMAIL_NOTIFICATION =
             "email-notifications";
-    public static final String NOTIFICATION_DELIVERED=
-            "notification-delivered";
-    public static final String NOTIFICATION_FAILED=
-            "notification-failed";
-    public static final String NOTIFICATION_DISPATCHED="notification-dispatched";
-    public static final String NOTIFICATION_PROCESSING="notification-processing";
+    public static final String NOTIFICATION_STATUS =
+            "notification-status";
 
 }

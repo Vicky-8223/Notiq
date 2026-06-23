@@ -20,7 +20,7 @@ public class DispatcherProducer {
           log.info("Published eventId={} to topic={}",event.getEventId(),topic);
       }
       public void publishDispatched(DeliveryStatusEvent event){
-         kafkaTemplate.send(KafkaTopics.NOTIFICATION_DISPATCHED,event);
-         log.info("Dispatched eventId={}",event.getEventId());
+         kafkaTemplate.send(KafkaTopics.NOTIFICATION_STATUS,event);
+         log.info("Published DISPATCHED eventId={}",event.getEventId());
       }
 }
